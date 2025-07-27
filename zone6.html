@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About Zone6</title>
+<link rel="stylesheet" href="../style/zone.css" />
+
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+      margin: 20px;
+      transition: background 0.3s, color 0.3s;
+    }
+
+    /* Default styles - dark mode */
+    body.dark-mode {
+      background-color: #000;
+      color: white;
+    }
+
+    /* Light mode styles */
+    body.light-mode {
+      background-color: #fff;
+      color: #000;
+    }
+
+   
+    .icon-heading {
+      display: flex;
+      align-items: center;
+      font-size: 1.5em;
+      margin-top: 30px;
+    }
+
+    .icon-heading img {
+      width: 30px;
+      margin-right: 10px;
+    }
+
+    .text-image-right {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 30px;
+      margin: 30px 0;
+      flex-wrap: nowrap;
+    }
+
+    .text-block {
+      flex: 1 1 55%;
+      font-size: 1.1em;
+    }
+
+    .text-image-right img {
+      flex: 1 1 35%;
+      max-width: 350px;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(255, 255, 255, 0.1);
+    }
+
+    .side-by-side {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .side-by-side img {
+      flex: 1 1 48%;
+      max-width: 48%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    ul {
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    table th {
+      background-color: #222;
+      color: white;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    table td, table th {
+      padding: 10px;
+      border: 1px solid #555;
+      background-color: #111;
+    }
+
+    /* Light mode table fix */
+    body.light-mode table th {
+      background-color: #e0e0e0;
+      color: #000;
+    }
+
+    body.light-mode table td {
+      background-color: #fff;
+      color: #000;
+      border-color: #ccc;
+    }
+
+    a {
+      color: #00c3ff;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-shadow: 0 0 10px #00c3ff;
+    }
+
+    body.light-mode a {
+      color: #0066cc;
+    }
+
+    body.light-mode a:hover {
+      text-shadow: 0 0 10px #0066cc;
+    }
+
+    .back-link {
+      display: block;
+      text-align: center;
+      margin-top: 40px;
+      color: #00c3ff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: transform 0.3s ease;
+    }
+
+    .back-link:hover {
+      transform: scale(1.05);
+      text-shadow: 0 0 10px #00c3ff;
+    }
+
+    .mode-toggle {
+      display: block;
+      margin: 20px auto;
+      padding: 10px 20px;
+      background-color: #222;
+      color: white;
+      border: none;
+      font-weight: bold;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    body.light-mode .mode-toggle {
+      background-color: #ccc;
+      color: black;
+    }
+
+    .mode-toggle:hover {
+      opacity: 0.9;
+    }
+
+    #quiz-container {
+      margin-top: 30px;
+    }
+
+    .question {
+      margin-bottom: 20px;
+    }
+
+    #quiz-result {
+      font-weight: bold;
+      color: #0f0;
+    }
+
+    #quiz-result.low-score {
+      color: #f44;
+    }
+
+    body.light-mode .question {
+      color: #000;
+    }
+
+    body.light-mode input[type="radio"] {
+      accent-color: #0066cc;
+    }
+
+    body.light-mode #quiz-result {
+      color: #007000;
+    }
+
+    body.light-mode #quiz-result.low-score {
+      color: #cc0000;
+    }
+
+    @media (max-width: 768px) {
+      .text-image-right {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .text-block, .text-image-right img {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+
+      .side-by-side img {
+        max-width: 100%;
+        flex: 1 1 100%;
+      }
+    }
+
+#quiz-container {
+  background-color: #1a1a1a;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 50px auto;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+  border: 2px solid #00c3ff;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+body.light-mode #quiz-container {
+  background-color: #f9f9f9;
+  border-color: #0066cc;
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.2);
+}
+
+#quiz-form p {
+  margin-bottom: 8px;
+  font-size: 1.1em;
+}
+
+#quiz-form label {
+  display: block;
+  margin: 4px 0 10px;
+  cursor: pointer;
+  font-size: 1em;
+}
+
+#quiz-form button {
+  background-color: #00c3ff;
+  color: #000;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  display: block;
+  margin: 20px auto 0;
+  transition: transform 0.2s, background-color 0.3s;
+}
+
+#quiz-form button:hover {
+  transform: scale(1.05);
+  background-color: #00e1ff;
+}
+
+#quiz-result {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.2em;
+}
+
+body.light-mode #quiz-form button {
+  background-color: #0066cc;
+  color: #fff;
+}
+
+body.light-mode #quiz-form button:hover {
+  background-color: #007bff;
+}
+
+/* Make label background highlight when selected */
+#quiz-form input[type="radio"] {
+  display: none; /* Hide default radio */
+}
+
+#quiz-form label {
+  padding: 10px 15px;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  display: block;
+  background-color: transparent;
+  transition: all 0.3s ease;
+}
+
+#quiz-form label:hover {
+  background-color: rgba(0, 195, 255, 0.1);
+}
+
+#quiz-form input[type="radio"]:checked + label {
+  background-color: #00c3ff;
+  color: black;
+  font-weight: bold;
+  border-color: #00c3ff;
+  box-shadow: 0 0 10px #00c3ff;
+}
+
+/* Light mode adjustments */
+body.light-mode #quiz-form label:hover {
+  background-color: rgba(0, 102, 204, 0.1);
+}
+
+body.light-mode #quiz-form input[type="radio"]:checked + label {
+  background-color: #0066cc;
+  color: white;
+  border-color: #0066cc;
+  box-shadow: 0 0 10px #0066cc;
+}
+
+  </style>
+</head>
+
+<body>
+  <button class="mode-toggle" onclick="toggleMode()">🌗 Toggle Light/Dark Mode</button>
+
+  <h1>About Zone6</h1>
+
+  <div class="icon-heading">
+    <img src="https://img.icons8.com/emoji/48/light-bulb-emoji.png" alt="Idea icon" />
+    <span>How It Began</span>
+  </div>
+
+  <div class="text-image-right">
+    <div class="text-block">
+      <p>Zone6 started as a visionary project aimed at blending innovation with real-world application. It was founded with a focus on empowering communities, building inclusive technology, and shaping the future through collaboration.</p>
+      <p>Initially, it was just a shared workspace in an unused warehouse, but quickly grew into a creative powerhouse where developers, artists, and thinkers gathered to bring ideas to life.</p>
+    </div>
+    <img src="https://cic.com/wp-content/uploads/2025/03/3.-4220-Coworking-edited-scaled.jpg" alt="Zone6 early office" />
+  </div>
+
+  <div class="icon-heading">
+    <img src="https://img.icons8.com/emoji/48/gear-emoji.png" alt="Gear icon" />
+    <span>Why Zone6 Exists</span>
+  </div>
+
+  <p>Zone6 was created to solve modern problems using technology, design, and community. Its mission is to create accessible spaces and tools for everyone — not just coders, but educators, creators, and problem-solvers.</p>
+  <ul>
+    <li>Creating inclusive and collaborative workspaces</li>
+    <li>Building open-source tech and educational tools</li>
+    <li>Running programs for youth, women, and underrepresented groups</li>
+  </ul>
+
+  <div class="side-by-side">
+    <img src="https://cic.com/wp-content/uploads/2023/07/C.4-Built-by-innovators-for-innovators-1-1024x683.jpg" alt="Workshop" />
+    <img src="https://www.wework.com/en-GB/ideas/wp-content/uploads/sites/11/2021/08/Web_150DPI-5F%E5%85%AC%E5%8C%BA_v1.jpg?fit=1440%2C810" alt="Tech Lab" />
+  </div>
+
+  <div class="icon-heading">
+    <img src="https://img.icons8.com/emoji/48/globe-showing-europe-africa-emoji.png" alt="Global icon" />
+    <span>Zone6's Impact</span>
+  </div>
+
+  <p>Zone6 is now recognized globally as a model for community-driven innovation. With dozens of successful projects and open-source collaborations, it's helping other cities replicate the model.</p>
+  <p><strong>“Innovate. Include. Inspire.”</strong></p>
+
+  <div class="side-by-side">
+    <img src="https://www.ikeva.com/wp-content/uploads/2022/11/community_coworking_space.jpg" alt="Global Event" />
+    <img src="https://globalinnovationgathering.org/wp-content/uploads/2023/12/WordPress-ArticleEvent-Cover-Image-1.jpg" alt="Zone6 Team" />
+  </div>
+
+  <div class="icon-heading">
+    <img src="https://img.icons8.com/emoji/48/calendar-emoji.png" alt="Calendar icon" />
+    <span>Zone 6 ISRO Activities – 2025</span>
+  </div>
+
+  <p>Zone 6 — led by NRSC (National Remote Sensing Centre) in collaboration with HSFC — covers Telangana, Jharkhand, Andaman & Nicobar Islands, Maharashtra, and Chhattisgarh.</p>
+
+  <h2>📅 Events & Outreach Highlights</h2>
+
+  <h3>1. START 2025</h3>
+  <p>Held Jan 9–29, 2025: A 3-week outreach on space science across Zone6.</p>
+
+  <h3>2. Geospatial Workshops</h3>
+  <p>Topics: Atmospheric lightning, ENSO mapping, ocean sensing.</p>
+
+  <h3>3. YUVIKA 2025</h3>
+  <p>From Feb 24, 2025: Hands-on student training for Class IX–X across NRSC centres.</p>
+
+  <h2>🗓️ Summary Calendar (Zone 6 – 2025)</h2>
+
+  <table>
+    <tr>
+      <th>Date</th>
+      <th>Event</th>
+      <th>Location</th>
+      <th>Description</th>
+    </tr>
+    <tr>
+      <td>Jan 9–29</td>
+      <td>START 2025</td>
+      <td>NRSC, Hyderabad</td>
+      <td>3-week awareness program</td>
+    </tr>
+    <tr>
+      <td>From Feb 24</td>
+      <td>YUVIKA 2025</td>
+      <td>NRSC & Others</td>
+      <td>Student engagement program</td>
+    </tr>
+    <tr>
+      <td>All 2025</td>
+      <td>Geospatial Workshops</td>
+      <td>Region-wide</td>
+      <td>Climate and disaster themes</td>
+    </tr>
+  </table>
+
+  <h3>🧭 What’s Next?</h3>
+  <p>World Space Week and National Space Day (Aug 23) will include special outreach.</p>
+
+  <div class="icon-heading">
+    <img src="https://img.icons8.com/emoji/48/question-mark-emoji.png" alt="Quiz icon" />
+    <span>Zone6 Quick Quiz</span>
+  </div>
+
+  <div id="quiz-container">
+    <h2 style="text-align:center;">🧠 Zone6 Quick Quiz</h2>
+    <form id="quiz-form">
+      <div class="question">
+        <p><strong>1. Where is the NRSC located?</strong></p>
+        <input type="radio" name="q1" id="q1a" value="a"><label for="q1a">Mumbai</label>
+        <input type="radio" name="q1" id="q1b" value="b"><label for="q1b">Hyderabad</label>
+        <input type="radio" name="q1" id="q1c" value="c"><label for="q1c">Bengaluru</label>
+      </div>
+
+      <div class="question">
+        <p><strong>2. What does YUVIKA stand for?</strong></p>
+        <input type="radio" name="q2" id="q2a" value="a"><label for="q2a">Young Universe Visionary Camp</label>
+        <input type="radio" name="q2" id="q2b" value="b"><label for="q2b">Youth Video Knowledge Academy</label>
+        <input type="radio" name="q2" id="q2c" value="c"><label for="q2c">Young Scientist Programme</label>
+      </div>
+
+      <div class="question">
+        <p><strong>3. Which state is NOT in Zone6?</strong></p>
+        <input type="radio" name="q3" id="q3a" value="a"><label for="q3a">Maharashtra</label>
+        <input type="radio" name="q3" id="q3b" value="b"><label for="q3b">Gujarat</label>
+        <input type="radio" name="q3" id="q3c" value="c"><label for="q3c">Telangana</label>
+      </div>
+
+      <button type="button" onclick="checkQuiz()">Submit Quiz</button>
+    </form>
+
+    <div id="quiz-result"></div>
+  </div>
+
+  <script>
+    function toggleMode() {
+      document.body.classList.toggle("light-mode");
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("theme", document.body.classList.contains("light-mode") ? "light" : "dark");
+    }
+
+    window.onload = function () {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "light") {
+        document.body.classList.add("light-mode");
+      } else {
+        document.body.classList.add("dark-mode");
+      }
+    };
+
+    function checkQuiz() {
+      const answers = { q1: 'b', q2: 'c', q3: 'b' };
+      let score = 0;
+      for (let key in answers) {
+        const selected = document.querySelector(`input[name="${key}"]:checked`);
+        if (selected && selected.value === answers[key]) score++;
+      }
+      const resultDiv = document.getElementById("quiz-result");
+      resultDiv.className = score === 3 ? '' : 'low-score';
+      resultDiv.innerHTML = `You scored ${score} out of 3. ${score === 3 ? '🎉 Excellent!' : 'Try again to improve!'}`;
+    }
+  </script>
+</body>
+</html>
+

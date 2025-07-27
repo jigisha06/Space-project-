@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap');
+
+/* === FONT FACE === */
+@font-face {
+  font-family: 'Orbitron';
+  src: url('/asset/orbiton.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* === GLOBAL RESET & BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #f4f6f8;
+  color: #333;
+  font-family: 'IBM Plex Sans', sans-serif;
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+  background-color: #121212;
+  color: #e0e0e0;
+}
+
+/* === HEADINGS === */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  margin-bottom: 10px;
+  animation: fadeInUp 0.8s ease-in-out;
+  color: #00364d;
+  text-shadow:
+    0 0 1px #00c3ff,
+    0 0 2px #00bcd4;
+}
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6 {
+  color: #00eaff;
+  text-shadow:
+    0 0 6px #00eaff,
+    0 0 12px #00bcd4,
+    0 0 20px #0097a7;
+}
+
+h1 {
+  font-size: 2.8em;
+  margin-top: 30px;
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+h2 {
+  font-size: 1.8em;
+  margin-top: 30px;
+  border-bottom: 2px solid #90caf9;
+  padding-bottom: 5px;
+}
+
+h3 {
+  font-size: 1.4em;
+  margin-top: 25px;
+}
+
+/* === ICON HEADING === */
+.icon-heading {
+  display: flex;
+  align-items: center;
+  font-size: 1.6em;
+  margin-top: 40px;
+  gap: 10px;
+  color: #00364d;
+  text-shadow: 0 0 1px #00c3ff;
+  background-color: #e3f2fd;
+  padding: 10px 15px;
+  border-radius: 6px;
+  animation: bounceIn 0.6s ease;
+  font-family: 'Orbitron', sans-serif;
+}
+
+body.dark-mode .icon-heading {
+  background-color: #263238;
+  color: #00eaff;
+  text-shadow: 0 0 4px #00c3ff;
+}
+
+.icon-heading img {
+  width: 32px;
+}
+
+/* === BUTTON === */
+.mode-toggle {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #222;
+  color: white;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+body.light-mode .mode-toggle {
+  background-color: #ccc;
+  color: black;
+}
+
+.mode-toggle:hover {
+  opacity: 0.9;
+}
+
+/* === MEDIA === */
+@media (max-width: 768px) {
+  .icon-heading {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounceIn {
+  0% { transform: scale(0.8); opacity: 0; }
+  60% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(1); }
+}
